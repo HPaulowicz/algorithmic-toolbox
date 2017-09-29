@@ -4,11 +4,20 @@ a = [int(x) for x in str(raw_input()).split()]
 
 assert len(a) == n
 
-result = 0
+# result = 0
+
+max_index_one = int(-1)
 
 for i in range(0, n):
-    for j in range(i+1, n):
-        if a[i]*a[j] > result:
-            result = a[i]*a[j]
+    if (max_index_one == -1) or (a[i] > a[max_index_one]):
+        max_index_one = i
+
+max_index_two = int(-1)
+
+for j in range(0, n):
+    if (a[j] != a[max_index_one]) and ((max_index_two == -1) or (a[j] > a[max_index_two])):
+        max_index_two = j
+
+result = long(a[max_index_one] * a[max_index_two])
 
 print(result)
