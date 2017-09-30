@@ -5,7 +5,7 @@ def lcm(a, b):
     in_a = a
     in_b = b
     while b:
-        a, b = b, int(a%b)
+        a, b = b, a%b
     return int((in_b / a) * in_a)
 
 if __name__ == '__main__':
