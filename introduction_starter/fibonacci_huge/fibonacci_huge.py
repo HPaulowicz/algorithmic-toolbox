@@ -14,6 +14,7 @@ def get_fibonacci_huge_naive(n, m):
     return current % m
 
 if __name__ == '__main__':
-    input = sys.stdin.read();
+    input = raw_input()
+    # input = sys.stdin.read();
     n, m = map(int, input.split())
     print(get_fibonacci_huge_naive(n, m))
