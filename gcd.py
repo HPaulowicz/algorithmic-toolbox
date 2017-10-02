@@ -14,4 +14,4 @@ def euclide_gcd(a, b):
         a, b = b, a%b
     return a
 
-print euclide_gcd(int(input()), int(input()))
+print(euclide_gcd(int(input()), int(input())))
