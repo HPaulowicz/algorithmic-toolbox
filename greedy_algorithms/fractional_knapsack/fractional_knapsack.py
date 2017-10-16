@@ -22,35 +22,6 @@ def get_optimal_value(capacity, weights, values):
         capacity -= a
     return round(value, 4)
 
-# def get_optimal_value(capacity, weights, values):
-#     value = 0.
-#     vpus = []
-#     for i in range(0, len(values)):
-#         vpu = float(values[i] / weights[i])
-#         vpus.append([vpu, values[i], weights[i]])
-#
-#     remaining_capacity = capacity
-#
-#     sorted_values = sorted(vpus, key=lambda x: x[0], reverse=True)
-#
-#     for i in range(0, len(sorted_values)):
-#         if remaining_capacity > 0:
-#
-#             wgt = sorted_values[i][2]
-#             val = sorted_values[i][1]
-#             vpu = sorted_values[i][0]
-#
-#             item_remainder = remaining_capacity // wgt
-#
-#             if item_remainder > 0:
-#                 remaining_capacity = remaining_capacity - wgt
-#                 value = value + val
-#             else:
-#                 remaining_capacity = 0
-#                 value = value + (vpu * capacity)
-#
-#     return round(value, 4)
-
 
 if __name__ == "__main__":
     data = list(map(int, sys.stdin.read().split()))
