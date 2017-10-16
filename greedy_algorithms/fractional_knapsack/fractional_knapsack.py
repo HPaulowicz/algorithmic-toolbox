@@ -1,34 +1,55 @@
 # Uses python3
 import sys
 
+def get_max_index(weights, values):
+    max_i = 0
+    max = 0
+    for i in range(0, len(weights)):
+        if ((weights[i] != 0) and (values[i] / weights[i] > max)):
+            max = float(values[i] / weights[i])
+            max_i = i
+    return max_i
+
 def get_optimal_value(capacity, weights, values):
-    value = 0.
-    vpus = []
-    for i in range(0, len(values)):
-        vpu = float(values[i] / weights[i])
-        vpus.append([vpu, values[i], weights[i]])
-
-    remaining_capacity = capacity
-
-    sorted_values = sorted(vpus, key=lambda x: x[0], reverse=True)
-
-    for i in range(0, len(sorted_values)):
-        if remaining_capacity > 0:
-
-            wgt = sorted_values[i][2]
-            val = sorted_values[i][1]
-            vpu = sorted_values[i][0]
-
-            item_remainder = remaining_capacity // wgt
-
-            if item_remainder > 0:
-                remaining_capacity = remaining_capacity - wgt
-                value = value + val
-            else:
-                remaining_capacity = 0
-                value = value + (vpu * capacity)
-
+    value = 0.0
+    for i in range(0, len(weights)):
+        if (capacity == 0):
+            return value
+        index = get_max_index(weights, values)
+        a = min(capacity, weights[index])
+        value += a * values[index] / weights[index]
+        weights[index] -= a
+        capacity -= a
     return round(value, 4)
+
+# def get_optimal_value(capacity, weights, values):
+#     value = 0.
+#     vpus = []
+#     for i in range(0, len(values)):
+#         vpu = float(values[i] / weights[i])
+#         vpus.append([vpu, values[i], weights[i]])
+#
+#     remaining_capacity = capacity
+#
+#     sorted_values = sorted(vpus, key=lambda x: x[0], reverse=True)
+#
+#     for i in range(0, len(sorted_values)):
+#         if remaining_capacity > 0:
+#
+#             wgt = sorted_values[i][2]
+#             val = sorted_values[i][1]
+#             vpu = sorted_values[i][0]
+#
+#             item_remainder = remaining_capacity // wgt
+#
+#             if item_remainder > 0:
+#                 remaining_capacity = remaining_capacity - wgt
+#                 value = value + val
+#             else:
+#                 remaining_capacity = 0
+#                 value = value + (vpu * capacity)
+#
+#     return round(value, 4)
 
 
 if __name__ == "__main__":
@@ -40,7 +61,3 @@ if __name__ == "__main__":
     opt_value = get_optimal_value(capacity, weights, values)
     print("{:.10f}".format(opt_value))
 
-# 3 50 60 20 100 50 120 30
-# 1 10 500 30
-# 1 1000 500 30
-# 3 100 60 20 100 50 120 30
