@@ -10,7 +10,6 @@ def lcm(a, b):
     return int((in_b // a) * in_a)
 
 if __name__ == '__main__':
-    input = input()
-    # input = sys.stdin.read()
+    input = sys.stdin.read()
     a, b = map(int, input.split())
     print(lcm(a, b))
